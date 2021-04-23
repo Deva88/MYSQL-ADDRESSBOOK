@@ -1,0 +1,71 @@
+                                                    	  ER-ADDRESSBOOK
+
+
+
+UC12: query for Normalization
+--------------------------------
+//creating person data table
+------------------------------
+>CREATE TABLE PERSON_INFO
+>(
+>personID INT PRIMARY KEY,
+>firstName VARCHAR(150) ,
+>lastName VARCHAR(150),
+>address VARCHAR(150),
+>city VARCHAR(150),
+>zip INT(10),
+>state CHAR(50),
+>PhoneNumber BIGINT(20),
+>Email varchar(20)
+>);
+>select * from PERSON_INFO;
+
+//inserting records
+--------------------
+INSERT INTO person_info VALUES(1,'Devendra','kumar','Garkha','Saran',52300,'Bihar',8123273639,'devendra@gm.in');
+INSERT INTO person_info VALUES(2,'Dev','Raj','RV-road','Saran',3000,'UP',9739251118,'dev@gm.in');
+INSERT INTO person_info VALUES(3,'Abhi','Raj','BTM','Bangalore',53001,'KA',1234567890,'abhi@gm.in');
+INSERT INTO person_info VALUES(4,'Ravi','Raj','MG-road','Delhi',13000,'DL',9908888000,'Ravi@gm.in');
+select * from person_info;
+
+
+//creating personType Table
+-----------------------------
+
+CREATE TABLE person_type
+(
+type_id INT PRIMARY KEY,
+type_name VARCHAR(50)
+);
+describe person_type;
+
+//inserting records
+----------------------
+INSERT INTO person_type values(10,'family');
+INSERT INTO person_type values(20,'family');
+INSERT INTO person_type values(30,'friend');
+INSERT INTO person_type values(40,'fiend');
+select * from person_type;
+
+//creating type table
+---------------------
+create table Type
+(
+personID INT,
+FOREIGN KEY(personID) REFERENCES person_info(personID),
+type_id INT,
+FOREIGN KEY(type_id) references person_type(type_id)
+);
+//inserting records
+--------------------
+insert into Type values(1,10);
+insert into Type values(2,20);
+insert into Type values(3,30);
+insert into Type values(4,40);
+select * from Type;
+
+UC13:- query for ER blocks
+---------------------------
+select * from person_info where city='Saran' OR state='UP';
+select count(state) from person_info ;
+select count(city) from person_info;
